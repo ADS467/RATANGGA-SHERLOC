@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "author": "Agus Darmawan",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-c3-devkitm-1", "id": "esp", "top": -0.3, "left": 5.82, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led_data",
+      "top": -51.6,
+      "left": 80.6,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_data",
+      "top": 51.4,
+      "left": 85.55,
+      "rotate": 270,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_sos",
+      "top": -51.6,
+      "left": 99.8,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_sos",
+      "top": 51.4,
+      "left": 95.15,
+      "rotate": 270,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": -48,
+      "left": -38.4,
+      "attrs": { "text": "Ground Segment\n" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:5", "r_data:1", "blue", [] ],
+    [ "r_data:2", "led_data:A", "blue", [] ],
+    [ "led_data:C", "esp:GND.2", "black", [ "h-95.6", "v77.1" ] ],
+    [ "esp:4", "r_sos:1", "red", [] ],
+    [ "r_sos:2", "led_sos:A", "red", [] ],
+    [ "led_sos:C", "esp:GND.4", "black", [ "v9.6", "h-114.8", "v125.1" ] ]
+  ],
+  "dependencies": {}
+}

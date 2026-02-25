@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "author": "Agus Darmawan",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-c3-devkitm-1",
+      "id": "esp",
+      "top": -29.1,
+      "left": -214.98,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "imu1",
+      "top": -6.62,
+      "left": -112.28,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 73.4,
+      "left": -297.6,
+      "attrs": { "color": "red", "xray": "1" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 138.35,
+      "left": -201.6,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -61.2,
+      "left": -226.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -34.15,
+      "left": -174.2,
+      "rotate": 180,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": -124.8,
+      "left": -220.8,
+      "attrs": { "text": "User Segment\n" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -23.7,
+      "left": -319.5,
+      "rotate": 270,
+      "attrs": { "volume": "0.1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "imu1:SDA", "esp:8", "green", [ "v0" ] ],
+    [ "imu1:SCL", "esp:9", "green", [ "v0" ] ],
+    [ "esp:GND.10", "imu1:GND", "black", [ "h37.12", "v9.68" ] ],
+    [ "imu1:VCC", "esp:3V3.1", "red", [ "h-9.6", "v143.92", "h-115.2", "v-134.4" ] ],
+    [ "esp:3V3.2", "btn1:1.r", "red", [ "h-9.6", "v76.8" ] ],
+    [ "btn1:2.r", "r1:1", "orange", [ "h0.2", "v38.6" ] ],
+    [ "r1:2", "esp:GND.6", "black", [ "h19.28" ] ],
+    [ "btn1:2.r", "esp:4", "yellow", [ "h0" ] ],
+    [ "esp:5", "r2:1", "orange", [ "h8.32", "v-131.15" ] ],
+    [ "r2:2", "led1:A", "orange", [ "v0" ] ],
+    [ "led1:C", "esp:GND.2", "black", [ "h-18.8", "v57.6" ] ],
+    [ "imu1:INT", "esp:6", "green", [ "h0" ] ],
+    [ "bz1:1", "esp:GND.3", "black", [ "h9.6", "v19.2" ] ],
+    [ "bz1:2", "esp:1", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
