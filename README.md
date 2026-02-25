@@ -1,5 +1,5 @@
 
----
+
 
 ## 1. Hardware Design (CAD)
 The `/cad` directory contains the design files for the physical components of the system
@@ -7,7 +7,6 @@ The `/cad` directory contains the design files for the physical components of th
 * **Locator (User Segment):** Design for the wearable device worn by the hiker
 * **CubeSat (Space Segment):** Structural design for the 1U satellite relay
 
----
 
 ## 2. Simulations
 The project includes both statistical and functional simulations to be used
@@ -24,7 +23,6 @@ Located in `/simulations/wokwi`.  The files simulate the firmware and hardware i
 * **CubesatHikingTracker (Space Segment):** Wemos S2 Mini, LoRa communication, and GNSS simulation
 * **GroundStationHikingTracker (Ground Segment):** Data handling and MQTT relay
 
----
 
 ## Instructions for use
 
