@@ -13,7 +13,7 @@ The `/cad` directory contains the design files for the physical components of th
 The project includes both statistical and functional simulations to be used
 
 ### Python Simulation
-Located in `/simulations/python`, this tool provides algorithmic validation
+Located in `/simulations/python`
 
 * **Fall Detection Machine Testing:** A test case simulation that tests the MPU6050 state-machine logic against 10,000 iterations of synthetic hiking noise to determine the accuracy and false-positive rates of detection
 
