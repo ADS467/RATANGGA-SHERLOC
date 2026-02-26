@@ -1,44 +1,42 @@
+# *RATANGGA* `SHER-LOC`
+
+
+> ### Hardware Design
+> The `/cad` directory contains the following files:
+>  - Locator (user segment) CAD design for the wearable device
+>  -  Cubesat (space segment) CAD design for the satellite
+
+> ### Simulations
+> The `/Simulations` directory contains the following files:
+> > **1. Python simulation**
+> >  `/Simulation/FallDetectionMachineSimulator.py`
+> >  Fall detection machine testing script, which tests the simulation of the IMU process against synthetic hiking data
+> > **How to run**
+> > - Make sure the Python environment is installed with these libraries: `Numpy, Matplotlib`
+> > - Execute the script via terminal / opening the file. Can be configured by changing `G_TRIGGER`, `SAMPLE_RATE_MS`, `ITERATIONS`
+> 
+> > **2. Wokwi simulations**
+> >  `/Simulation/Wokwi Projects`
+> >  Exported files from Wokwi simulating the firmware and hardware interactions in a controlled environment. The simulations are divided into 3 segments:
+> > - `/WearableHikingTracker`
+> > - `/CubesatHikingTracker` 
+> > - `/GroundStationHiker` 
+> > 
+> > **How to run**
+> > - Make sure all the folders are installed (`/WearableHikingTracker`,`/CubesatHikingTracker`,`/GroundStationHiker` )
+> > - Select the "Start from scratch" button and choose the ESP32 platform. *Note: Create new projects for each folder*
+> > - Select the "Upload File" feature to upload the files in each folder (`diagram.json`, `sketch.ino`, `libraries.txt`).
+> > - Run the simulation. To simulate LoRa handling, run all the projects at once 
+
+> ### Project Files
+> The `/Project Files` directory contains the following files:
+> - Cubesat `Cubesat.ino`: Firmware for the Cubesat
+> - Wearable Device `WearableDevice.ino`: Firmware for the Wearable Device
+> - Ground Station `GroundStation.ino`: Firmware for the Ground Station
+> 
+> **How to use**
+> - Download the `.ino` files and open them as a sketch in [Arduino IDE](https://www.arduino.cc/en/software/)
+> - Verify the code 
 
 
 
-## 1. Hardware Design (CAD)
-The `/cad` directory contains the design files for the physical components of the system
-
-* **Locator (User Segment):** Design for the wearable device worn by the hiker
-* **CubeSat (Space Segment):** Structural design for the 1U satellite relay
-
-
-## 2. Simulations
-The project includes both statistical and functional simulations to be used
-
-### Python Simulation
-Located in `/simulations/python`
-
-* **Fall Detection Machine Testing:** A test case simulation that tests the MPU6050 state-machine logic against 10,000 iterations of synthetic hiking noise to determine the accuracy and false-positive rates of detection
-
-### Wokwi Firmware simulation
-Located in `/simulations/wokwi`.  The files simulate the firmware and hardware interactions for each segment 
-
-* **WearableHikingTracker (User Segment):** ESP32-C3-Mini and MPU6050
-* **CubesatHikingTracker (Space Segment):** Wemos S2 Mini, LoRa communication, and GNSS simulation
-* **GroundStationHikingTracker (Ground Segment):** Data handling and MQTT relay
-
-
-## Instructions for use
-
-### Running the Python simulation
-1.  Ensure **Python 3.x** environment is installed
-2.  Install the required libraries, if you haven't yet already:  
-    `Numpy, Matplotlib`
-3.  Navigate to the simulation directory and execute the script
-4.  The script will output the statistical success rate and generate a visualization of the detection results
-
-### Running the Wokwi simulation
-Simulations are provided as exported project files. To run them in a web browser:
-
-1.  Go to **Wokwi.com**
-2.  Select the **"Start from Scratch"** option and choose the ESP32 platform
-3.  Use the **"Upload File"** feature in the Wokwi editor to upload the files contained within the relevant segment folder (e.g., `diagram.json`, `sketch.ino`, and `libraries.txt`)
-4.  Click the **"Play"** button to initiate the hardware simulation
-
-> **Note:** The Space and Ground segments require an active internet connection to communicate with the HiveMQ broker
