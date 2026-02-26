@@ -43,10 +43,10 @@ SemaphoreHandle_t commsMutex;
 
 // ==================== HELPERS ====================
 void setLoraMode(int mode) {
-    if (mode == 0) { // Normal mode
+    if (mode == 0) {
         digitalWrite(LORA_M0, LOW);
         digitalWrite(LORA_M1, LOW);
-    } else { // Sleep/Config mode
+    } else { 
         digitalWrite(LORA_M0, HIGH);
         digitalWrite(LORA_M1, HIGH);
     }
@@ -81,8 +81,7 @@ void TaskIMU(void* pv) {
             else if (now > impactDeadline) { waitImpact = false; }
         }
 
-        // Pedometer Logic
-        if (!stepHigh && totalG > 1.25f) { // Adjusted threshold for BMI160
+        if (!stepHigh && totalG > 1.25f) { 
             if ((now - lastStepMs) > 300) {
                 g_steps++; stepsInWindow++; lastStepMs = now;
             }
@@ -132,17 +131,16 @@ void TaskComms(void* pv) {
             }
         }
 
-        // Construct Packet
         snprintf(payload, sizeof(payload), 
             "{\"id\":\"%s\",\"lat\":%.6f,\"lng\":%.6f,\"steps\":%lu,\"status\":\"%s\"}",
             DEVICE_ID, currentPos.lat, currentPos.lng, (unsigned long)g_steps, status.c_str());
 
-        // 1. Send via LoRa (Primary)
+        // Via LoRa
         xSemaphoreTake(commsMutex, portMAX_DELAY);
         LoRaSerial.println(payload);
         xSemaphoreGive(commsMutex);
 
-        // 2. Send via MQTT (Secondary/Optional)
+        // Via MQTT
         if (WiFi.status() == WL_CONNECTED && mqtt.connected()) {
             xSemaphoreTake(commsMutex, portMAX_DELAY);
             mqtt.publish("hiker/data", payload);
@@ -152,7 +150,6 @@ void TaskComms(void* pv) {
         g_fallDetected = false;
         g_sosBtnPressed = false;
         
-        // Interval: Send every 30s or instantly if Alert
         vTaskDelay(pdMS_TO_TICKS(sendAlert ? 5000 : 30000));
     }
 }
@@ -167,10 +164,8 @@ void setup() {
     pinMode(SOS_PIN, INPUT_PULLUP); pinMode(BUZZER_PIN, OUTPUT);
     setLoraMode(0);
 
-    // IMU Init
     while (bmi160.I2cInit() != 0) { delay(1000); }
     
-    // GNSS Init
     gnss.begin();
     gnss.enablePower();
 
@@ -184,9 +179,8 @@ void setup() {
 }
 
 void loop() {
-    // Check SOS button (Active Low)
     if (digitalRead(SOS_PIN) == LOW) {
-        delay(50); // Debounce
+        delay(50); 
         if (digitalRead(SOS_PIN) == LOW) g_sosBtnPressed = true;
     }
 }
