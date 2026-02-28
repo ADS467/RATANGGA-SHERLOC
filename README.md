@@ -33,7 +33,10 @@
 > - Cubesat `Cubesat.ino`: Firmware for the Cubesat
 > - Wearable Device `WearableDevice.ino`: Firmware for the Wearable Device
 > - Ground Station `GroundStation.ino`: Firmware for the Ground Station
-> 
+>
+> Required libraries:
+> `DFRobot_GNSS.h, DFRobot_BMI160.h, PubSubClient.h`
+>
 > **How to use**
 > - Download the `.ino` files and open them as a sketch in [Arduino IDE](https://www.arduino.cc/en/software/)
 > - Verify the code 
